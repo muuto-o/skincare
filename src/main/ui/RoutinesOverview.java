@@ -10,6 +10,7 @@ import persistence.JsonWriter;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Map;
 import java.util.Scanner;
 
 //CLASS LEVEL COMMENT: Skincare Routine Scheduler app. Makes 14 instantiations of Routine class –
@@ -197,39 +198,68 @@ public class RoutinesOverview {
     // methods based on various user input.
     // NOTE: user input is case-sensitive and whitespace sensitive
     @SuppressWarnings({ "checkstyle:MethodLength", "checkstyle:SuppressWarnings" })
-    public void processRoutinesOverviewCommand(String command) { // access routine
-        if (command.equals("MonM")) {
-            runRoutine(monMorning); // show new object WORK ON IT
-        } else if (command.equals("MonN")) {
-            runRoutine(monNight);
-        } else if (command.equals("TueM")) {
-            runRoutine(tueMorning);
-        } else if (command.equals("TueN")) {
-            runRoutine(tueNight);
-        } else if (command.equals("WedM")) {
-            runRoutine(wedMorning);
-        } else if (command.equals("WedN")) {
-            runRoutine(wedNight);
-        } else if (command.equals("ThuM")) {
-            runRoutine(thuMorning);
-        } else if (command.equals("ThuN")) {
-            runRoutine(thuNight);
-        } else if (command.equals("FriM")) {
-            runRoutine(friMorning);
-        } else if (command.equals("FriN")) {
-            runRoutine(friNight);
-        } else if (command.equals("SatM")) {
-            runRoutine(satMorning);
-        } else if (command.equals("SatN")) {
-            runRoutine(satNight);
-        } else if (command.equals("SunM")) {
-            runRoutine(sunMorning);
-        } else if (command.equals("SunN")) {
-            runRoutine(sunNight);
+    // public void processRoutinesOverviewCommand(String command) { // access
+    // routine
+    // if (command.equals("MonM")) {
+    // runRoutine(monMorning); // show new object WORK ON IT
+    // } else if (command.equals("MonN")) {
+    // runRoutine(monNight);
+    // } else if (command.equals("TueM")) {
+    // runRoutine(tueMorning);
+    // } else if (command.equals("TueN")) {
+    // runRoutine(tueNight);
+    // } else if (command.equals("WedM")) {
+    // runRoutine(wedMorning);
+    // } else if (command.equals("WedN")) {
+    // runRoutine(wedNight);
+    // } else if (command.equals("ThuM")) {
+    // runRoutine(thuMorning);
+    // } else if (command.equals("ThuN")) {
+    // runRoutine(thuNight);
+    // } else if (command.equals("FriM")) {
+    // runRoutine(friMorning);
+    // } else if (command.equals("FriN")) {
+    // runRoutine(friNight);
+    // } else if (command.equals("SatM")) {
+    // runRoutine(satMorning);
+    // } else if (command.equals("SatN")) {
+    // runRoutine(satNight);
+    // } else if (command.equals("SunM")) {
+    // runRoutine(sunMorning);
+    // } else if (command.equals("SunN")) {
+    // runRoutine(sunNight);
+    // } else if (command.equals("Load")) {
+    // loadRoutinesOverview();
+    // } else if (command.equals("Save")) {
+    // saveRoutinesOverview();
+    // }
+    // }
+    public void processRoutinesOverviewCommand(String command) {
+        Map<String, Routine> routineMap = Map.of(
+                "MonM", monMorning,
+                "MonN", monNight,
+                "TueM", tueMorning,
+                "TueN", tueNight,
+                "WedM", wedMorning,
+                "WedN", wedNight,
+                "ThuM", thuMorning,
+                "ThuN", thuNight,
+                "FriM", friMorning,
+                "FriN", friNight,
+                "SatM", satMorning,
+                "SatN", satNight,
+                "SunM", sunMorning,
+                "SunN", sunNight);
+
+        Routine routine = routineMap.get(command);
+        if (routine != null) {
+            runRoutine(routine);
         } else if (command.equals("Load")) {
             loadRoutinesOverview();
         } else if (command.equals("Save")) {
             saveRoutinesOverview();
+        } else {
+            System.out.println("Invalid command: " + command);
         }
     }
 
@@ -301,30 +331,28 @@ public class RoutinesOverview {
     // }
     // }
     public void processRoutineCommand(String command, Routine r) {
+        if (r == null) {
+            System.out.println("Routine is null.");
+            return;
+        }
+
+        if (r.getRoutineSize() == 0 && !command.equals("return")) {
+            emptyRoutinePrint(r);
+            return;
+        }
+
         switch (command) {
             case "add":
                 addProductToRoutine(r);
                 break;
             case "delete":
-                if (r.getRoutineSize() != 0) {
-                    deleteProduct(r);
-                } else {
-                    emptyRoutinePrint(r);
-                }
+                deleteProduct(r);
                 break;
             case "reorder":
-                if (r.getRoutineSize() != 0) {
-                    reorderProduct(r);
-                } else {
-                    emptyRoutinePrint(r);
-                }
+                reorderProduct(r);
                 break;
             case "edit":
-                if (r.getRoutineSize() != 0) {
-                    editProduct(r);
-                } else {
-                    emptyRoutinePrint(r);
-                }
+                editProduct(r);
                 break;
             case "return":
                 runRoutinesOverview();
