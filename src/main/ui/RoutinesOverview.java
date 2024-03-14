@@ -346,13 +346,23 @@ public class RoutinesOverview {
                 addProductToRoutine(r);
                 break;
             case "delete":
-                deleteProduct(r);
-                break;
             case "reorder":
-                reorderProduct(r);
-                break;
             case "edit":
-                editProduct(r);
+                if (r.getRoutineSize() != 0) {
+                    switch (command) {
+                        case "delete":
+                            deleteProduct(r);
+                            break;
+                        case "reorder":
+                            reorderProduct(r);
+                            break;
+                        case "edit":
+                            editProduct(r);
+                            break;
+                    }
+                } else {
+                    emptyRoutinePrint(r);
+                }
                 break;
             case "return":
                 runRoutinesOverview();
