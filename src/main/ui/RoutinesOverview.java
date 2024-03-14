@@ -301,14 +301,19 @@ public class RoutinesOverview {
 
     // EFFECTS: Verifies if a user input String is valid. Helper method for
     // runRoutine(Routine r);
+    // public boolean validInputScreen2(String command) {
+    // if (command.equals("add") || command.equals("delete") ||
+    // command.equals("return")) {
+    // return true;
+    // } else if (command.equals("reorder") || command.equals("edit")) {
+    // return true;
+    // } else {
+    // return false;
+    // }
+    // }
     public boolean validInputScreen2(String command) {
-        if (command.equals("add") || command.equals("delete") || command.equals("return")) {
-            return true;
-        } else if (command.equals("reorder") || command.equals("edit")) {
-            return true;
-        } else {
-            return false;
-        }
+        return command.equals("add") || command.equals("delete") || command.equals("return")
+                || command.equals("reorder") || command.equals("edit");
     }
 
     // REQUIRES: editcommand String input must be valid, verified by
