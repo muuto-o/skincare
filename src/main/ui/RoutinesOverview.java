@@ -169,25 +169,49 @@ public class RoutinesOverview {
 
     // EFFECTS: Verifies if a user input String is valid. Helper method for
     // runRoutinesOverview();
-    public boolean validInput(String command) { // can replace else-ifs with switch casee
-        if (command.equals("MonM") || command.equals("MonN")) {
-            return true;
-        } else if (command.equals("TueM") || command.equals("TueN")) {
-            return true;
-        } else if (command.equals("WedM") || command.equals("WedN")) {
-            return true;
-        } else if (command.equals("ThuM") || command.equals("ThuN")) {
-            return true;
-        } else if (command.equals("FriM") || command.equals("FriN")) {
-            return true;
-        } else if (command.equals("SatM") || command.equals("SatN")) {
-            return true;
-        } else if (command.equals("SunM") || command.equals("SunN")) {
-            return true;
-        } else if (command.equals("Load") || command.equals("Save")) {
-            return true;
-        } else {
-            return false;
+    // public boolean validInput(String command) { // can replace else-ifs with
+    // switch casee
+    // if (command.equals("MonM") || command.equals("MonN")) {
+    // return true;
+    // } else if (command.equals("TueM") || command.equals("TueN")) {
+    // return true;
+    // } else if (command.equals("WedM") || command.equals("WedN")) {
+    // return true;
+    // } else if (command.equals("ThuM") || command.equals("ThuN")) {
+    // return true;
+    // } else if (command.equals("FriM") || command.equals("FriN")) {
+    // return true;
+    // } else if (command.equals("SatM") || command.equals("SatN")) {
+    // return true;
+    // } else if (command.equals("SunM") || command.equals("SunN")) {
+    // return true;
+    // } else if (command.equals("Load") || command.equals("Save")) {
+    // return true;
+    // } else {
+    // return false;
+    // }
+    // }
+    public boolean validInput(String command) {
+        switch (command) {
+            case "MonM":
+            case "MonN":
+            case "TueM":
+            case "TueN":
+            case "WedM":
+            case "WedN":
+            case "ThuM":
+            case "ThuN":
+            case "FriM":
+            case "FriN":
+            case "SatM":
+            case "SatN":
+            case "SunM":
+            case "SunN":
+            case "Load":
+            case "Save":
+                return true;
+            default:
+                return false;
         }
     }
 
