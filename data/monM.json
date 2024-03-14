@@ -1,0 +1,21 @@
+{
+    "dayOfWeek": "Monday",
+    "skincareroutine": [
+        {
+            "productBrand": "Innisfree",
+            "productType": "Green Tea Cleanser",
+            "productName": "Water Cleanser"
+        },
+        {
+            "productBrand": "Aveeno",
+            "productType": "SPF 50+",
+            "productName": "Sun Protection"
+        },
+        {
+            "productBrand": "CeraVe",
+            "productType": "Ceramides Moisturizer",
+            "productName": "Moisturizer"
+        }
+    ],
+    "timeOfDay": "Morning"
+}

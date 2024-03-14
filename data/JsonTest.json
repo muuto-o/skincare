@@ -1,0 +1,16 @@
+{
+    "dayOfWeek": "Tuesday",
+    "skincareroutine": [
+        {
+            "productBrand": "Innisfree",
+            "productType": "Water Cleanser",
+            "productName": "Cherry Blossom Cleanser"
+        },
+        {
+            "productBrand": "Cerave",
+            "productType": "Moisturizer",
+            "productName": "Ceramides Moisturizer"
+        }
+    ],
+    "timeOfDay": "Night"
+}
