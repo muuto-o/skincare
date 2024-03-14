@@ -10,8 +10,11 @@ import persistence.JsonWriter;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 //CLASS LEVEL COMMENT: Skincare Routine Scheduler app. Makes 14 instantiations of Routine class –
 //                     two for every day of the week:  morning and nighttime.
@@ -192,27 +195,12 @@ public class RoutinesOverview {
     // }
     // }
     public boolean validInput(String command) {
-        switch (command) {
-            case "MonM":
-            case "MonN":
-            case "TueM":
-            case "TueN":
-            case "WedM":
-            case "WedN":
-            case "ThuM":
-            case "ThuN":
-            case "FriM":
-            case "FriN":
-            case "SatM":
-            case "SatN":
-            case "SunM":
-            case "SunN":
-            case "Load":
-            case "Save":
-                return true;
-            default:
-                return false;
-        }
+        Set<String> validCommands = new HashSet<>(List.of(
+                "MonM", "MonN", "TueM", "TueN", "WedM", "WedN",
+                "ThuM", "ThuN", "FriM", "FriN", "SatM", "SatN",
+                "SunM", "SunN", "Load", "Save"));
+
+        return validCommands.contains(command);
     }
 
     // REQUIRES: editcommand String input must be valid, verified by
@@ -329,31 +317,6 @@ public class RoutinesOverview {
     // EFFECTS: processes valid user inputs for Menu Screen 1. Runs other called
     // methods based on various user input.
     // NOTE: user input is case-sensitive and whitespace sensitive
-    // public void processRoutineCommand(String command, Routine r) {
-    // if (command.equals("add")) {
-    // addProductToRoutine(r);
-    // } else if (command.equals("delete")) {
-    // if (r.getRoutineSize() != 0) {
-    // deleteProduct(r);
-    // } else {
-    // emptyRoutinePrint(r);
-    // }
-    // } else if (command.equals("reorder")) {
-    // if (r.getRoutineSize() != 0) {
-    // reorderProduct(r);
-    // } else {
-    // emptyRoutinePrint(r);
-    // }
-    // } else if (command.equals("edit")) {
-    // if (r.getRoutineSize() != 0) {
-    // editProduct(r);
-    // } else {
-    // emptyRoutinePrint(r);
-    // }
-    // } else if (command.equals("return")) {
-    // runRoutinesOverview();
-    // }
-    // }
     public void processRoutineCommand(String command, Routine r) {
         if (r == null) {
             System.out.println("Routine is null.");
@@ -370,20 +333,22 @@ public class RoutinesOverview {
                 addProductToRoutine(r);
                 break;
             case "delete":
+                if (r.getRoutineSize() != 0) {
+                    deleteProduct(r);
+                } else {
+                    emptyRoutinePrint(r);
+                }
+                break;
             case "reorder":
+                if (r.getRoutineSize() != 0) {
+                    reorderProduct(r);
+                } else {
+                    emptyRoutinePrint(r);
+                }
+                break;
             case "edit":
                 if (r.getRoutineSize() != 0) {
-                    switch (command) {
-                        case "delete":
-                            deleteProduct(r);
-                            break;
-                        case "reorder":
-                            reorderProduct(r);
-                            break;
-                        case "edit":
-                            editProduct(r);
-                            break;
-                    }
+                    editProduct(r);
                 } else {
                     emptyRoutinePrint(r);
                 }
