@@ -323,16 +323,7 @@ public class RoutinesOverview {
     // methods based on various user input.
     // NOTE: user input is case-sensitive and whitespace sensitive
     public void processRoutineCommand(String command, Routine r) {
-        if (r == null) {
-            System.out.println("Routine is null.");
-            return;
-        }
-
-        if (r.getRoutineSize() == 0 && !command.equals("return")) {
-            emptyRoutinePrint(r);
-            return;
-        }
-
+        processRoutineCommandPostCheck(r);
         switch (command) {
             case "add":
                 addProductToRoutine(r);
@@ -352,6 +343,18 @@ public class RoutinesOverview {
             default:
                 System.out.println("Invalid command: " + command);
                 break;
+        }
+    }
+
+    public void processRoutineCommandPostCheck(Routine r) {
+        if (r == null) {
+            System.out.println("Routine is null.");
+            return;
+        }
+
+        if (r.getRoutineSize() == 0 && !command.equals("return")) {
+            emptyRoutinePrint(r);
+            return;
         }
     }
 
