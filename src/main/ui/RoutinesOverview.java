@@ -494,11 +494,8 @@ public class RoutinesOverview {
     // EFFECTS: verifies if user input is valid. Helper method to
     // editProductScreen3(Routine r, SkincareProduct p)
     public boolean validInputEditScreen(String command) {
-        if (command.equals("name") || command.equals("type") || command.equals("brand") || command.equals("return")) {
-            return true;
-        } else {
-            return false;
-        }
+        Set<String> validCommands = new HashSet<>(List.of("name", "type", "brand", "return"));
+        return validCommands.contains(command);
     }
 
     // REQUIRES: editcommand String input must be valid, verified by
