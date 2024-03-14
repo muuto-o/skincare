@@ -333,25 +333,13 @@ public class RoutinesOverview {
                 addProductToRoutine(r);
                 break;
             case "delete":
-                if (r.getRoutineSize() != 0) {
-                    deleteProduct(r);
-                } else {
-                    emptyRoutinePrint(r);
-                }
+                deleteProduct(r);
                 break;
             case "reorder":
-                if (r.getRoutineSize() != 0) {
-                    reorderProduct(r);
-                } else {
-                    emptyRoutinePrint(r);
-                }
+                reorderProduct(r);
                 break;
             case "edit":
-                if (r.getRoutineSize() != 0) {
-                    editProduct(r);
-                } else {
-                    emptyRoutinePrint(r);
-                }
+                editProduct(r);
                 break;
             case "return":
                 runRoutinesOverview();
